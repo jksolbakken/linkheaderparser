@@ -1,6 +1,6 @@
 # linkheaderparser
 
-![workflow](https://github.com/jksolbakken/linkheaderparser/actions/workflows/main.yaml/badge.svg)
+![workflow](https://github.com/jksolbakken/linkheaderparser/actions/workflows/main.yml/badge.svg)
 
 Parses [HTTP Link Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link). 
 The motivation behind this library is the ability to use pagination in the [GitHub API](https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api?apiVersion=2022-11-28). 
