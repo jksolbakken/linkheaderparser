@@ -1,4 +1,4 @@
-import org.cyclonedx.gradle.CycloneDxTask
+import java.net.URI
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 
 val junitVersion = "5.10.0"
@@ -8,7 +8,7 @@ version = "generatedlater"
 
 plugins {
     kotlin("jvm") version "1.9.10"
-    id("org.cyclonedx.bom") version "1.7.4"
+    id("maven-publish")
 }
 
 repositories {
@@ -58,9 +58,17 @@ tasks {
     withType<Wrapper> {
         gradleVersion = "8.3"
     }
+}
 
-    withType<CycloneDxTask> {
-        setOutputFormat("json")
-        setIncludeLicenseText(false)
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = URI("https://maven.pkg.github.com/jksolbakken/linkheaderparser")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
