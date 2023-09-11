@@ -12,9 +12,6 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # ratchet:actions/checkout@v3
-      - name: Set project version from latest tag
-        id: projversion
-        run: echo "version=`git describe`" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-java@cd89f46ac9d01407894225f350157564c9c7cee2 # ratchet:actions/setup-java@v3
         with:
           java-version: '17'
@@ -27,4 +24,3 @@ jobs:
           arguments: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJ_VERSIOM: ${{ steps.projversion.outputs.version }}
