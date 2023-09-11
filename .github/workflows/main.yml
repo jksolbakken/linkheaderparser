@@ -24,4 +24,4 @@ jobs:
         with:
           dependency-graph: generate-and-submit
       - name: Build and test
-        run: ./gradlew test
+        run: ./gradlew build

@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 val junitVersion = "5.10.0"
 
 group = "no.jksolbakken"
-version = "generatedlater"
+version = System.getenv("PROJ_VERSION") ?: "notimportant"
 
 plugins {
     kotlin("jvm") version "1.9.10"
@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
@@ -26,25 +27,6 @@ kotlin {
 }
 
 tasks {
-    withType<Jar> {
-        archiveBaseName.set("app")
-
-        manifest {
-            attributes["Main-Class"] = "no.nav.MainKt"
-            attributes["Class-Path"] = configurations.runtimeClasspath.get().joinToString(separator = " ") {
-                it.name
-            }
-        }
-
-        doLast {
-            configurations.runtimeClasspath.get().forEach {
-                val file = File("${layout.buildDirectory}/libs/${it.name}")
-                if (!file.exists())
-                    it.copyTo(file)
-            }
-        }
-    }
-
     withType<Test> {
         useJUnitPlatform()
         testLogging {
