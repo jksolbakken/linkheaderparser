@@ -40,6 +40,5 @@ private fun extractParams(link: String) = paramRegex.findAll(link)
 
 private fun urlEncodeEverythingButSlashes(input: String) =
     input.split("/")
-        .map { URLEncoder.encode(it, Charset.defaultCharset()) }
-        .joinToString(separator = "/")
+        .joinToString(separator = "/") { URLEncoder.encode(it, Charset.defaultCharset()) }
 
