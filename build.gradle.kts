@@ -1,13 +1,13 @@
 import java.net.URI
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 
-val junitVersion = "5.10.2"
+val junitVersion = "5.12.1"
 
 group = "no.jksolbakken"
 version = System.getenv("PROJ_VERSION") ?: "notimportant"
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.1.20"
     id("maven-publish")
 }
 
@@ -20,10 +20,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 tasks {
@@ -38,7 +39,7 @@ tasks {
     }
 
     withType<Wrapper> {
-        gradleVersion = "8.3"
+        gradleVersion = "8.14"
     }
 }
 
