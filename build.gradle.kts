@@ -1,13 +1,13 @@
 import java.net.URI
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 
-val junitVersion = "5.12.1"
+val junitVersion = "6.0.2"
 
 group = "no.jksolbakken"
 version = System.getenv("PROJ_VERSION") ?: "notimportant"
 
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm") version "2.3.0"
     id("maven-publish")
 }
 
